@@ -19,7 +19,7 @@ export default function ExerciseTime (props) {
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" >
-                        <Label value="Workout Session" position="top" className="workout-label"/>
+                        <Label value="Workout Session" position="top"/>
                     </XAxis>
                     <YAxis yAxisId="left" type="number" >
                         <Label 
