@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 export default function ExerciseTime (props) {
     const data = props.data;
     console.log(data)
+    console.log(data.date)
     // console.log(data.length)
     // console.log(data.date)
 
@@ -18,7 +19,7 @@ export default function ExerciseTime (props) {
                     id="exerciseTime-graph"
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey={data.date} >
+                    <XAxis dataKey="date" >
                         <Label value="Workout Session" position="top" className="workout-label"/>
                     </XAxis>
                     <YAxis yAxisId="left" type="number" >

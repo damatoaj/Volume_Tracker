@@ -17,7 +17,7 @@ export default function HeartRate(props) {
                     id="heartRate-graph"
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey={data.date} >
+                    <XAxis dataKey="date" >
                         <Label value="Workout Session" position="top"/>
                     </XAxis>
                     <YAxis yAxisId="left" type="number" >

@@ -17,7 +17,7 @@ export default function Volume (props) {
                     id="volume-graph"
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey={data.date} >
+                    <XAxis dataKey="date">
                         <Label value="Workout Session" position="top" id="label"/>
                     </XAxis>
                     <YAxis yAxisId="left" type="number" >
