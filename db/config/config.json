@@ -1,0 +1,17 @@
+{
+  "development": {
+    "database": "project4_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "project4_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "project4_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
