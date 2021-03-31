@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@prisma/client": "^2.20.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "bootstrap": "^4.6.0",
@@ -23,5 +24,8 @@
     "react-dom": "17.0.1",
     "recharts": "^2.0.8",
     "sequelize": "^6.5.1"
+  },
+  "devDependencies": {
+    "prisma": "^2.20.0"
   }
 }
