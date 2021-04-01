@@ -23,7 +23,8 @@
     "react-bootstrap": "^1.5.2",
     "react-dom": "17.0.1",
     "recharts": "^2.0.8",
-    "sequelize": "^6.5.1"
+    "sequelize": "^6.5.1",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "prisma": "^2.20.0"
