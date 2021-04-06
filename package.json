@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@prisma/client": "^2.20.0",
@@ -25,8 +26,5 @@
     "recharts": "^2.0.8",
     "sequelize": "^6.5.1",
     "sequelize-cli": "^6.2.0"
-  },
-  "devDependencies": {
-    "prisma": "^2.20.0"
   }
 }
