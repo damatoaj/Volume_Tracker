@@ -17,10 +17,9 @@ app
     .prepare()
     .then(() => {
         const server = express();
+        const showRoutes = require('./routes/index.js');
 
-        // server.get("/", (req, res) => {
-        //     return res.render()
-        // })
+        server.use("/api", showRoutes);
 
         server.get('*', (req, res) => {
             return handle(req, res);
