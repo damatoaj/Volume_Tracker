@@ -33,7 +33,7 @@ export default function Form (props) {
   
     return (
         props.token ? 
-        <div id="landing-page">
+        <PrivateRoute>
             <WorkoutForm 
                 setData={props.setData}
                 date={date}
@@ -64,7 +64,7 @@ export default function Form (props) {
                     />
                 </Carousel.Item>
             </Carousel>
-        </div>
+        </PrivateRoute>
         :
         <div id="auth-landing">
             <Auth
