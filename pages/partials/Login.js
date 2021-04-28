@@ -32,12 +32,14 @@ export default function Login (props) {
         console.log(email)
         axios.post(`/api/User/userLogin`, {email, password})
         .then(response => {
+            setRedirect(true);
             props.setToken(localStorage.getItem('jwtToken'));
             props.handleAuth(response.data.user)
             props.setData(response.data.data)
             setLoading(true);
             console.log(response)
             console.log('login click working')
+            if (redirect) return <Content />
         }).catch(err => {
             console.log(err, 'KILL ME PLEASE')
         })
