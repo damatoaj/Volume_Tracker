@@ -39,7 +39,7 @@ export default function Login (props) {
             setLoading(true);
             console.log(response)
             console.log('login click working')
-            if (redirect) return <Content />
+            if (redirect) return <PrivateRoute />
         }).catch(err => {
             console.log(err, 'KILL ME PLEASE')
         })

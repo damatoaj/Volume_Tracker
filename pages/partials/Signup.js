@@ -36,7 +36,7 @@ export default function Signup(props) {
             props.setToken(localStorage.getItem('jwtToken'))
             props.handleAuth(response.data)
             console.log(response)
-            if(redirect) return( <Content />)
+            if(redirect) return( <PrivateRoute />)
         })
     }
 
