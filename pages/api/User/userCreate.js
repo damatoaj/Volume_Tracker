@@ -20,5 +20,5 @@ export default async function userCreate(req, res) {
 
     console.log(token)
     console.log(user)
-    res.json(user, token)
+    res.json({user:user, token:token})
 }
