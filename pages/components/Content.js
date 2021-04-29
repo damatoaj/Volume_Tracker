@@ -23,7 +23,7 @@ export default function Form (props) {
     const data = props.data;
 
     // console.log(date, minutes, heartRate, volume)
-    console.log(res.json)
+    
 
     // const data = dummyData;
     // const user = dummyPerson;
