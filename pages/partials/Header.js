@@ -8,7 +8,7 @@ function simulateNetworkRequest() {
 
 export default function Header (props) {
     const [isLoading, setLoading] = useState(false);
-    console.log(props)
+    // console.log(props)
 
     useEffect(() => {
         if (isLoading) {
