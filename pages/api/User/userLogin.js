@@ -18,7 +18,7 @@ export default async function userLogin(req, res) {
 
     const data = await user.getWorkouts()
 
-    console.log(user)
-    console.log(data)
-    res.json({user:user, data:data})
+    console.log(user, "%%%%%%%%%%%%%%%%%%%")
+    console.log(data, "^^^^^^^^^^^^^^^^^")
+    res.json(user, data)
 }
