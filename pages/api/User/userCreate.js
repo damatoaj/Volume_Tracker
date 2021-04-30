@@ -15,10 +15,10 @@ export default async function userCreate(req, res) {
         })
     const token = await user.update({
         token: createUserToken(req, user),
-        // user: user
+        user: user
     })
 
-    console.log(token)
-    console.log(user)
-    res.json({user:user, token:token})
+    console.log(token, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    console.log(user, "##############################")
+    res.json(user, token)
 }

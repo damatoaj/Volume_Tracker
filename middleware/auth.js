@@ -17,13 +17,13 @@ const findUser = (jwt_payload, done) => {
     .catch(done)
 }
 
+//initialize passport
+passport.initialize();
+
 const strategy = new Strategy(options, findUser);
 
 //register the strategy so passport uses it when we call 'passport.authenticate()' in our routes
 passport.use(strategy)
-
-//initialize passport
-passport.initialize();
 
 //write a funciton to create a jwt token
 const createUserToken = (req, user) => {
@@ -41,6 +41,9 @@ const createUserToken = (req, user) => {
             process.env.JWT_SECRET,
             { expiresIn: '30min' }
         )
+        .then(() => {
+            console.log("success", jwt.sign)
+        })
     }
 }
 
