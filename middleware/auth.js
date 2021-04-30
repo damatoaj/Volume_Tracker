@@ -41,9 +41,6 @@ const createUserToken = (req, user) => {
             process.env.JWT_SECRET,
             { expiresIn: '30min' }
         )
-        .then(() => {
-            console.log("success", jwt.sign)
-        })
     }
 }
 
