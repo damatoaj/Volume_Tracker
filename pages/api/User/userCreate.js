@@ -14,10 +14,9 @@ export default async function userCreate(req, res) {
             password: hashPassword
         })
         console.log(user, "##############################")
-    const token = await user({
-        token: createUserToken(req, user)
-        
-    })
+    const token = {
+        token: createUserToken(req, user)   
+    }
 
     console.log(token, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     res.json({user:user, token:token})
