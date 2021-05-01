@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card'
-// import setAuthToken from '../../utils/setAuthToken';
+import setAuthToken from '../../utils/setAuthToken';
 import axios from 'axios';
 // import { redirect } from 'next/dist/next-server/server/api-utils';
 
@@ -33,12 +33,14 @@ export default function Login (props) {
         axios.post(`/api/User/userLogin`, {email, password})
         .then(response => {
             setRedirect(true);
-            props.setToken(localStorage.getItem('jwtToken'));
+            localStorage.setItem('jwtToken', response.data.token.token);
+            setAuthToken(response.data.token.token);
             props.handleAuth(response.data.user)
             props.setData(response.data.data)
             setLoading(true);
             console.log(response)
             console.log('login click working')
+            props.setToken(localStorage.getItem('jwtToken'));
             if (redirect) return <PrivateRoute />
         }).catch(err => {
             console.log(err, 'KILL ME PLEASE')
