@@ -34,10 +34,10 @@ export default function Signup(props) {
         .then(response => {
             console.log(response, '!!!!!!!!!!!!');
             console.log(response.data.token, '%%%%%%%%%%%%%%%%%%%')
-            // console.log(response.data.token, '))))))))))))')
+            console.log(response.data.token.token, '))))))))))))')
             setLoading(true);
-            localStorage.getItem('jwtToken', response.data.token)
-            setAuthToken(response.data.token);
+            localStorage.getItem('jwtToken', response.data.token.token)
+            setAuthToken(response.data.token.token);
             props.handleAuth(response.data.user);
             props.setToken(localStorage.getItem('jwtToken'));
 
