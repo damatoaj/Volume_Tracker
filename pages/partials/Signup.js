@@ -2,6 +2,7 @@ import {useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import setAuthToken from '../../utils/setAuthToken';
 
 function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 1000));
@@ -33,9 +34,10 @@ export default function Signup(props) {
         .then(response => {
             setLoading(true);
             setRedirect(true);
-            props.setToken(localStorage.getItem('jwtToken'))
-            props.handleAuth(response.data)
-            console.log(response)
+            props.setToken(localStorage.getItem('jwtToken', response.data.token))
+            setAuthToken(response.data.token);
+            props.handleAuth(response.data);
+            console.log(response);
             if(redirect) return( <PrivateRoute />)
         })
     }
