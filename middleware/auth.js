@@ -41,7 +41,7 @@ const createUserToken = (req, user) => {
             { id: user.id, email: user.email },
             process.env.JWT_SECRET,
             { expiresIn: '30min' },
-            console.log("$$$$$$$$$$$$$$$$$$$$")
+            console.log(process.env.JWT_SECRET, "$$$$$$$$$$$$$$$$$$$$")
         )
         
     }
