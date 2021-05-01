@@ -19,6 +19,6 @@ export default async function userCreate(req, res) {
     }
 
     console.log(token, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    res.json({user:user, token:token})
+    res.json(user, token)
     // console.log(token, "(((((((((((((((((((((")
 }
