@@ -29,7 +29,7 @@ export default function Header (props) {
     };
 
 
-    let conditionalHeader = props.token !== '' ?
+    let conditionalHeader = props.token.length <= 0 ?
         <Jumbotron>
             <h1 className="display-1">Login or Sign Up</h1>
             <h1>To Track Your Exercise Volume</h1> 
