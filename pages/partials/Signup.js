@@ -32,12 +32,15 @@ export default function Signup(props) {
         console.log('handle click works')
         axios.post(`/api/User/userCreate`, {fname, lname, email, password})
         .then(response => {
-            console.log(response);
+            console.log(response, '!!!!!!!!!!!!');
+            console.log(response.data.token, '%%%%%%%%%%%%%%%%%%%')
             setLoading(true);
             localStorage.getItem('jwtToken', response.data.token)
             setAuthToken(response.data.token);
             props.handleAuth(response.data.user);
             props.setToken(localStorage.getItem('jwtToken'));
+
+
             setRedirect(true);
             if(redirect) return( <PrivateRoute />)
         })
