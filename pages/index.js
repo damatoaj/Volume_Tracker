@@ -13,7 +13,7 @@ import user from './api/dummyPerson';
  
 
 export default function Home() {
-  const[currentUser, setCurrentUser] = useState({});
+  const[currentUser, setCurrentUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
   const [password, setPassword] = useState(null);
