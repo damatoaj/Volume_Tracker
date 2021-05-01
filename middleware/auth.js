@@ -36,12 +36,14 @@ const createUserToken = (req, user) => {
         err.statusCode = 422;
         throw err;
     } else {
+        console.log("jwt token is created and returned")
         return jwt.sign(
             { id: user.id, email: user.email },
             process.env.JWT_SECRET,
             { expiresIn: '30min' }
         )
+        
     }
 }
-
+//look into jwt.sign
 module.exports = { createUserToken };
