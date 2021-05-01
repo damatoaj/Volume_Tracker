@@ -13,12 +13,13 @@ export default async function userCreate(req, res) {
             email: req.body.email,
             password: hashPassword
         })
+        console.log(user, "##############################")
     const token = await user.update({
         token: createUserToken(req, user)
         
     })
 
     console.log(token, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    console.log(user, "##############################")
     res.json(user, token)
+    console.log(token, "(((((((((((((((((((((")
 }

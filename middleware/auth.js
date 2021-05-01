@@ -45,6 +45,7 @@ const createUserToken = (req, user) => {
         )
         
     }
+    console.log(jwt.sign(), "************") 
 }
 //look into jwt.sign
 module.exports = { createUserToken };
