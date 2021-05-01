@@ -32,7 +32,7 @@ const createUserToken = (req, user) => {
 
     //if we didn't get a user of the password isn't valid then throw an error
     if (!user || !validPassword) {
-        const err = new Error('Invalid credentials !!!!!!!!!!!');
+        const ß = new Error('Invalid credentials !!!!!!!!!!!');
         err.statusCode = 422;
         throw err;
     } else {
@@ -42,8 +42,7 @@ const createUserToken = (req, user) => {
             process.env.JWT_SECRET,
             { expiresIn: '30min' },
             console.log(process.env.JWT_SECRET, "$$$$$$$$$$$$$$$$$$$$")
-        )
-        
+        ) 
     }
     console.log(jwt.sign(), "************") 
 }

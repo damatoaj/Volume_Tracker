@@ -15,7 +15,7 @@ import user from './api/dummyPerson';
 export default function Home() {
   const[currentUser, setCurrentUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState('');
+  const token = localStorage.getItem('jwtToken');
   const [password, setPassword] = useState(null);
   const [data, setData] = useState([]);
 
@@ -60,7 +60,7 @@ export default function Home() {
           isAuthenticated={isAuthenticated}
           handleAuth={handleAuth}
           token={token}
-          setToken={setToken}
+          // setToken={setToken}
         />
         <Footer />
       </div>
