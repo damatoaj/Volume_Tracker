@@ -41,10 +41,8 @@ const createUserToken = (req, user) => {
             { id: user.id, email: user.email },
             process.env.JWT_SECRET,
             { expiresIn: '30min' },
-            console.log(process.env.JWT_SECRET, "$$$$$$$$$$$$$$$$$$$$")
         ) 
-    }
-    console.log(jwt.sign(), "************") 
+    } 
 }
-//look into jwt.sign
+
 module.exports = { createUserToken };

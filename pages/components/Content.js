@@ -72,7 +72,7 @@ export default function Form (props) {
                 setData={props.setData}
                 password={props.password}
                 setPassword={props.setPassword}
-                // setToken={props.setToken}
+                setToken={props.setToken}ßß
                 handleAuth={props.handleAuth}
                 setCurrentUser={props.setCurrentUser}
                 isAuthenticated={props.isAuthenticated}

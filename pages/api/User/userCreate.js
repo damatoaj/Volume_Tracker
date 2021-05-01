@@ -19,7 +19,7 @@ export default async function userCreate(req, res) {
         
     })
 
-    console.log(token, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    // console.log(token, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     res.json({user:user, token:token})
-    console.log(token, "(((((((((((((((((((((")
+    // console.log(token, "(((((((((((((((((((((")
 }
