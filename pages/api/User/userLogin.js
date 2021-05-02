@@ -19,5 +19,5 @@ export default async function userLogin(req, res) {
 
     console.log(user, "%%%%%%%%%%%%%%%%%%%")
     console.log(data, "^^^^^^^^^^^^^^^^^")
-    res.json(user, data, token)
+    res.json({user:user, data:data, token:token})
 }
