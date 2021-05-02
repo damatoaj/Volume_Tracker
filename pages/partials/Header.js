@@ -31,10 +31,6 @@ export default function Header (props) {
 
     let conditionalHeader = props.token !== '' ?
         <Jumbotron>
-            <h1 className="display-1">Login or Sign Up</h1>
-            <h1>To Track Your Exercise Volume</h1> 
-        </Jumbotron> :
-         <Jumbotron>
             <h1 className="display-1">Welcome {props.currentUser.fname} {props.currentUser.lname}</h1>
             <h1>Keep Track Of Those Gains!</h1>
             <Button
@@ -48,6 +44,10 @@ export default function Header (props) {
                 active
                 block
             />
+        </Jumbotron> :
+         <Jumbotron>
+            <h1 className="display-1">Login or Sign Up</h1>
+            <h1>To Track Your Exercise Volume</h1> 
         </Jumbotron>;
  
     return (

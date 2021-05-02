@@ -11,14 +11,13 @@ export default async function userLogin(req, res) {
         }
     })
 
-    const token = await user.update({
+    const token = {
         token: createUserToken(req, user),
-        user:user
-    })
+    }
 
     const data = await user.getWorkouts()
 
     console.log(user, "%%%%%%%%%%%%%%%%%%%")
     console.log(data, "^^^^^^^^^^^^^^^^^")
-    res.json(user, data)
+    res.json(user, data, token)
 }
