@@ -29,7 +29,7 @@ export default function Header (props) {
     };
 
 
-    let conditionalHeader = props.token !== '' ?
+    let conditionalHeader = props.token ?
         <Jumbotron>
             <h1 className="display-1">Welcome {props.currentUser.fname} {props.currentUser.lname}</h1>
             <h1>Keep Track Of Those Gains!</h1>
