@@ -8,7 +8,7 @@ function simulateNetworkRequest() {
 
 export default function Header (props) {
     const [isLoading, setLoading] = useState(false);
-    // console.log(props)
+    console.log(props)
 
     useEffect(() => {
         if (isLoading) {
@@ -29,7 +29,7 @@ export default function Header (props) {
     };
 
 
-    let conditionalHeader = props.token === '' ?
+    let conditionalHeader = props.token == '' ?
         <Jumbotron>
             <h1 className="display-1">Login or Sign Up</h1>
             <h1>To Track Your Exercise Volume</h1> 
