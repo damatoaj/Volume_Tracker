@@ -48,6 +48,7 @@ export default function Home() {
           currentUser={currentUser}
           handleAuth={handleAuth}
           setToken={setToken}
+          token={token}
         />
         <About />
         <Content
