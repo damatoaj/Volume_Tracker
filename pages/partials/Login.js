@@ -33,12 +33,12 @@ export default function Login (props) {
         axios.post(`/api/User/userLogin`, {email, password})
         .then(response => {
             setRedirect(true);
+            console.log(response)
             localStorage.setItem('jwtToken', response.data.token.token);
             setAuthToken(response.data.token.token);
             props.handleAuth(response.data.user)
             props.setData(response.data.data)
             setLoading(true);
-            console.log(response)
             console.log('login click working')
             props.setToken(localStorage.getItem('jwtToken'));
             if (redirect) return <PrivateRoute />
