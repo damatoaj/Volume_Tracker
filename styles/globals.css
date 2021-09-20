@@ -1,6 +1,31 @@
 html,
 * {
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-sz-rg: 1rem;
+  --font-sz-sm: calc(var(--font-sz-rg) / 2);
+  --font-sz-lg: calc(var(--font-sz-rg) * 2);
+  --font-sz-xl: calc(var(--font-sz-rg) * 3);
+  --font-sz-xs: calc(var(--font-sz-rg) / 3);
+
+  --width-rg: 100%;
+  --width-90: calc(var(--width-rg) * .9);
+  --width-80: calc(var(--width-rg) * .8);
+  --width-70: calc(var(--width-rg) * .7);
+  --width-60: calc(var(--width-rg) * .6);
+  --width-50: calc(var(--width-rg) * .5);
+
+  --marg-pad-reg: 1rem;
+  --marg-pad-lg: calc(var(--marg-pad-reg)* 1.5);
+  --marg-pad-xl: calc(var(--marg-pad-reg)* 2);
+  --marg-pad-sm: calc(var(--marg-pad-reg)* .75);
+  --marg-pad-xs: calc(var(--marg-pad-reg)* .5);
 }
 
 a {
@@ -9,25 +34,20 @@ a {
 }
 
 #about-volume {
-  margin: .5rem;
-  width:95%;
+  margin: var(--marg-pad-sm);
+  width: var(--width-80);
   height:5rem;
-  font-size: 2rem;
+  font-size: var(--font-sz-rg);
   letter-spacing: .3rem;
 }
 
 #about-text {
-  width: 90%;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  padding: 0;
+  width: var(--width-70);
+  margin-left: var(--marg-pad-xl);
+  margin-right: var(--marg-pad-xl);
 }
 
-
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-image: 
     linear-gradient(
       rgba(0,0,0,0),
@@ -41,33 +61,26 @@ body {
 footer {
   background-color: black;
   color: white;
-  /* height: 5rem; */
-  width: 100%;
-  padding: 3rem;
-  margin-top: 0rem;
+  width: var(--width-rg);
+  padding: var(--marg-pad-reg);
   position: absolute;
 }
 
 header {
   background-color: rgba(128, 128, 128, 0);
   background-size: cover;
-  width: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 5rem;
-  padding-bottom: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  width: var(--width-rg);
+  padding-left: var(--marg-pad-reg);
+  padding-right: var(--marg-pad-reg);
+  padding-top: var(--marg-pad-xl);
+  padding-bottom: var(--marg-pad-lg);
+  margin-left: var(--marg-pad-reg);
+  margin-right: var(--marg-pad-reg);
 }
 
 #home {
   display:flex;
   flex-direction: column;
-}
-section {
-  width: 85%;
-  padding:1rem;
-  text-align: left;
 }
 
 #landing-page{
@@ -84,94 +97,41 @@ section {
   text-align: center;
 }
 
-#login-email {
-  width: 95%;
-}
-
-#signup-fname {
-  width:95%
-}
-
-#signup-lname {
-  width:95%
-}
-
-#signup-email {
-  width:95%
-}
-
-#workout-date {
-  width:95%
-}
-
-#workout-time {
-  width:95%
-}
-
-#workout-heartRate {
-  width:95%
-}
-
+#login-email,
+#login-password,
+#signup-fname,
+#signup-lname,
+#signup-password,
+#signup-email,
+#workout-date,
+#workout-time,
+#workout-heartRate,
 #workout-volume {
-  width:95%
+  width: var(--width-90);
 }
 
-#login-form {
-  letter-spacing: .2rem;
-  margin: 1rem;
-  width: 90%;
-  padding:.5rem;
-  background-color:rgba(0, 0, 0, .5);
-  color: white;
-}
-
-#signup-form {
-  letter-spacing: .2rem;
-  margin: 1rem;
-  width: 90%;
-  padding:.5rem;
-  background-color:rgba(0, 0, 0, .5);
-  color: white;
-}
-
+#login-form,
+#signup-form,
 #workout-form {
   letter-spacing: .2rem;
-  margin: 1rem;
-  width: 90%;
-  padding:.5rem;
+  margin: var(--marg-pad-reg);
+  width: var(--width-90);
+  padding: var(--marg-pad-xs);
   background-color:rgba(0, 0, 0, .5);
   color: white;
   text-align: left;
 }
 
-/* #volume-graph {
-  color:white;
-} */
-
 section {
   color: white;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width:100%;
+  width: var(--width-rg);
   height:25rem;
 }
 
-#volume-graph {
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255,.5)
-  );
-  color: white;
-}
-
-#heartRate-graph {
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255,.5)
-  );
-  color: white;
-}
-
+#volume-graph,
+#heartRate-graph,
 #exerciseTime-graph {
   background-image: linear-gradient(
     rgba(255, 255, 255, 0.5),
@@ -182,25 +142,10 @@ section {
 
 #carousel {
   color:white;
-  
 }
 
-#volume-carousel {
-  border:2px solid white;
-  color:white;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-#volume-time {
-  border:2px solid white;
-  color:white;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
+#volume-carousel,
+#volume-time,
 #volume-heartRate {
   border:2px solid white;
   color:white;
@@ -211,23 +156,10 @@ section {
 
 tspan {
   color: white;
-  
 }
 
-#heartRate-container {
-  height: 35rem;
-  width: 95%;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
-#volume-container {
-  height: 35rem;
-  width: 95%;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
+#heartRate-container,
+#volume-container,
 #minutes-container {
   height: 35rem;
   width: 95%;
@@ -235,23 +167,18 @@ tspan {
   margin-bottom: 5rem;
 }
 
-#github-logo {
-  background-color: white;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  border-radius: 1rem;
-}
-
-#linkedin-logo {
-  background-color: white;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  border-radius: 1rem;
-}
-
+#github-logo,
+#linkedin-logo,
 #wordpress-logo {
   background-color: white;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: var(--marg-pad-lg);
+  margin-right: var(--marg-pad-lg);
   border-radius: 1rem;
+}
+
+@media  only screen and (min-width: 1200px) {
+ :root {
+  --width-rg: 80%;
+  --font-sz-rg: 1.5rem;
+ }
 }
