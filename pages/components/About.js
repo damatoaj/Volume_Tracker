@@ -1,6 +1,6 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Card from 'react-bootstrap/Card';
 import { Dropdown} from 'react-bootstrap';
+
 export default function About() {
     return(
         <DropdownButton id="about-volume" title="Why Track Volume?" size="lg">
@@ -19,5 +19,5 @@ export default function About() {
                 </p>
             </Dropdown.ItemText>
         </DropdownButton>
-    )
-}
+    );
+};

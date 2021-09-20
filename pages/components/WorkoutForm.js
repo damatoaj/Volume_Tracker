@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Router from 'next/router';
 import axios from 'axios';
 import moment from 'moment';
-
-
 
 function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 1000));
@@ -30,20 +26,14 @@ export default function WorkoutForm (props) {
     
     const handleClick = e => {
         e.preventDefault();
-        console.log('attemtp to make workout')
         axios.post(`/api/User/[id]/workoutCreate`, {date, minutes, heartRate, volume, user})
         .then(response => {
             setLoading(true)
-            // console.log(response.data)
-            console.log("Submitting data")
             props.setData(response.data)
-            // Router.post
         }).catch(err=> {
             console.log(err, 'cannot submit data')
         })
     };
-
-    
 
     return(
 
@@ -95,12 +85,11 @@ export default function WorkoutForm (props) {
                     <Button 
                         as="input"
                         disabled={isLoading} 
-                        onClick={!isLoading ? handleClick: null }
+                        onClick={!isLoading ? handleClick : null }
                         type='submit' 
                         value="Submit"
                         variant="primary" 
                         size="lg" 
-                        active
                         block
                     />
                 </fieldset>

@@ -16,7 +16,6 @@ export default function Login (props) {
     const [email, setEmail] = useState('');
     const [redirect, setRedirect] = useState(false);
     const [isLoading, setLoading] = useState(false);
-    console.log(email)
 
     useEffect(() => {
         if (isLoading) {
@@ -28,18 +27,14 @@ export default function Login (props) {
 
     const handleClick = e => {
         e.preventDefault();
-        console.log("this is a login attempt")
-        console.log(email)
         axios.post(`/api/User/userLogin`, {email, password})
         .then(response => {
             setRedirect(true);
-            console.log(response)
             localStorage.setItem('jwtToken', response.data.token.token);
             setAuthToken(response.data.token.token);
             props.handleAuth(response.data.user)
             props.setData(response.data.data)
             setLoading(true);
-            console.log('login click working')
             props.setToken(localStorage.getItem('jwtToken'));
             if (redirect) return <PrivateRoute />
         }).catch(err => {
@@ -83,8 +78,7 @@ export default function Login (props) {
                     type='submit' 
                     value="Submit"
                     variant="primary" 
-                    size="lg" 
-                    active
+                    size="lg"
                 />               
             </fieldset>
         </Form>    

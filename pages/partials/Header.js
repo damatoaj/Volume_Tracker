@@ -8,7 +8,6 @@ function simulateNetworkRequest() {
 
 export default function Header (props) {
     const [isLoading, setLoading] = useState(false);
-    console.log(props)
 
     useEffect(() => {
         if (isLoading) {
@@ -21,7 +20,6 @@ export default function Header (props) {
     const handleClick = e => {
         setLoading(true);
         e.preventDefault();
-        console.log("logging out")
         props.setToken(null);
         props.setCurrentUser(null)
         props.setPassword(null);
@@ -41,7 +39,6 @@ export default function Header (props) {
                 value="Log Out"
                 variant="primary" 
                 size="lg" 
-                active
                 block
             />
         </Jumbotron> :

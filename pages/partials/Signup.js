@@ -29,19 +29,13 @@ export default function Signup(props) {
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log('handle click works')
         axios.post(`/api/User/userCreate`, {fname, lname, email, password})
         .then(response => {
-            console.log(response, '!!!!!!!!!!!!');
-            console.log(response.data.token, '%%%%%%%%%%%%%%%%%%%')
-            console.log(response.data.token.token, '))))))))))))')
             setLoading(true);
             localStorage.setItem('jwtToken', response.data.token.token)
             setAuthToken(response.data.token.token);
             props.handleAuth(response.data.user);
             props.setToken(localStorage.getItem('jwtToken'));
-
-
             setRedirect(true);
             if(redirect) return( <PrivateRoute />)
         })
@@ -100,7 +94,6 @@ export default function Signup(props) {
                     value="Submit"
                     variant="primary" 
                     size="lg" 
-                    active
                 />              
             </fieldset>
         </Form>

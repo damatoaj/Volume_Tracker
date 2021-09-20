@@ -1,5 +1,5 @@
-import { useState, useEffect, Component } from 'react';
-import Head from 'next/head';
+import { useState, useEffect } from 'react';
+
 import Carousel from 'react-bootstrap/Carousel';
 
 import Volume from './Volume';
@@ -8,25 +8,13 @@ import ExerciseTime from './ExerciseTime';
 import WorkoutForm from './WorkoutForm';
 import Auth from './Auth';
 
-
-import dummyData from '../api/DummyData';
-import dummyPerson from '../api/dummyPerson';
-// import { filterProps } from 'recharts/types/util/types';
-
 export default function Form (props) {
-    // console.log(props)
     const [minutes, setMinutes] = useState(0);
     const [date, setDate] = useState(0);
     const [heartRate, setHeartRate] = useState(0)
     const [volume, setVolume] = useState(0);
 
     const data = props.data;
-
-    // console.log(date, minutes, heartRate, volume)
-    
-
-    // const data = dummyData;
-    // const user = dummyPerson;
 
     useEffect (() => {
         setVolume(minutes*heartRate)
@@ -78,5 +66,5 @@ export default function Form (props) {
                 isAuthenticated={props.isAuthenticated}
             />
         </div> 
-    )
-}
+    );
+};
