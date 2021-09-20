@@ -124,8 +124,8 @@ header {
 
 section {
   color: white;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: var(--marg-pad-reg);
+  margin-bottom: var(--marg-pad-reg);
   width: var(--width-rg);
   height:25rem;
 }
@@ -180,5 +180,6 @@ tspan {
  :root {
   --width-rg: 80%;
   --font-sz-rg: 1.5rem;
+  
  }
 }
