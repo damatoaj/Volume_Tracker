@@ -11,4 +11,26 @@
   B. Add in exercise types to the models, so users can distinguish whether they are running, walking etc.
 
 # Models
+  A. User
+    1. Attribues
+      a. fname: string
+      b. lname: string
+      c. email: string
+      d. password: string
+  B. Workouts
+    1. Attributes
+      a. date: Date
+      b. minutes: integer
+      c. heartRate: integer
+      d. userId: integer
+      e. volume: integer
+# Technologies Used
+  1. PostgreSQL
+  2. HTML
+  3. CSS
+  4. JavaScript
+  5. React-BootStrap
+  6. Recharts
+  7. Next.js
+  8. Bcrypt
   
