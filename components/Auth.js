@@ -1,9 +1,7 @@
 import Login from '../partials/Login';
 import Signup from '../partials/Signup';
 
-export default function Auth (props) {
-    console.log(props)
-    
+export default function Auth (props) {    
     return(
         <div>
             <Signup 

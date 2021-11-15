@@ -18,11 +18,6 @@ export default function Form (props) {
 
     const data = props.data;
 
-    // console.log(date, minutes, heartRate, volume)
-
-    // const data = dummyData;
-    // const user = dummyPerson;
-
     useEffect (() => {
         setVolume(minutes*heartRate)
     }, [minutes, heartRate]);

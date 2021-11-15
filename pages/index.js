@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/globals.css';
 
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';

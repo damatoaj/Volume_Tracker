@@ -2,9 +2,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import Container from 'react-bootstrap/Container';
 
 export default function Volume (props) {
-    const data = props.data
-    // console.log(`Volume, ${data} 😭`)
-
+    const data = props.data;
     return (
         <Container fluid id="volume-container">
         <h1>Volume Compared to Minutes</h1>
