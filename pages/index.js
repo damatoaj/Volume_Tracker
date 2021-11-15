@@ -3,12 +3,12 @@ import {useState} from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
-import Header from '../pages/partials/Header';
-import Footer from '../pages/partials/Footer';
+import Header from '../partials/Header';
+import Footer from '../partials/Footer';
 
 import About from '../pages/components/About';
 import Content from './components/Content';
-import user from './api/dummyPerson';
+
 
  
 

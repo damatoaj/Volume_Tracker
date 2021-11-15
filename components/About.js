@@ -1,5 +1,4 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Card from 'react-bootstrap/Card';
 import { Dropdown} from 'react-bootstrap';
 export default function About() {
     return(

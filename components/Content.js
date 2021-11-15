@@ -9,10 +9,6 @@ import WorkoutForm from './WorkoutForm';
 import Auth from './Auth';
 
 
-import dummyData from '../api/DummyData';
-import dummyPerson from '../api/dummyPerson';
-// import { filterProps } from 'recharts/types/util/types';
-
 export default function Form (props) {
     // console.log(props)
     const [minutes, setMinutes] = useState(0);
