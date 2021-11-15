@@ -6,7 +6,7 @@ import styles from '../styles/globals.css';
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 
-import About from '../pages/components/About';
+import About from '../components/About';
 import Content from './components/Content';
 
 
