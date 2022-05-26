@@ -3,7 +3,7 @@ import Signup from '../partials/Signup';
 
 export default function Auth (props) {    
     return(
-        <div>
+        <>
             <Signup 
                 setCurrentUser={props.setCurrentUser} 
                 handleAuth={props.handleAuth} 
@@ -19,6 +19,6 @@ export default function Auth (props) {
                 password={props.password}
                 setPassword={props.setPassword}
             />
-        </div>
+        </>
     )
 }

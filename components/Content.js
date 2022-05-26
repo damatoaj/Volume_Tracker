@@ -1,5 +1,4 @@
-import { useState, useEffect, Component } from 'react';
-import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 import Volume from './Volume';
@@ -10,7 +9,6 @@ import Auth from './Auth';
 
 
 export default function Form (props) {
-    // console.log(props)
     const [minutes, setMinutes] = useState(0);
     const [date, setDate] = useState(0);
     const [heartRate, setHeartRate] = useState(0)
