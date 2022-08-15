@@ -29,10 +29,9 @@ passport.initialize();
 const createUserToken = (req, user) => {
    
     const validPassword = bcrypt.compareSync(req.body.password, user.password); //returns a boolean
-
     //if we didn't get a user of the password isn't valid then throw an error
     if (!user || !validPassword) {
-        const err = new Error('Invalid credentials !!!!!!!!!!!');
+        const err = new Error('Invalid credentials');
         err.statusCode = 422;
         throw err;
     } else {

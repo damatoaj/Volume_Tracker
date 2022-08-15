@@ -2,7 +2,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import Container from 'react-bootstrap/Container';
 
 export default function Volume (props) {
-    const data = props.data;
+    const data = props.data.map(datum => {
+        return {...datum, date: datum.date.substring(0,10)}
+    });
     return (
         <Container fluid id="volume-container">
         <h1>Volume Compared to Minutes</h1>
@@ -30,13 +32,13 @@ export default function Volume (props) {
                             value="minutes" 
                             angle="90" 
                             position="right"
-                            color="white" 
+                            color="black" 
                         />
                     </YAxis>
                     <Tooltip />
                     <Legend verticalAlign="top"/>
-                    <Line yAxisId="left" type="monotone" dataKey="volume" stroke="#8884d8" color="white"/>
-                    <Line yAxisId="right" type="monotone" dataKey="minutes" stroke="#32a852" color="white"/>
+                    <Line yAxisId="left" type="monotone" dataKey="volume" stroke="#8884d8" color="black"/>
+                    <Line yAxisId="right" type="monotone" dataKey="minutes" stroke="#32a852" color="black"/>
                 </LineChart>
             </ResponsiveContainer>
         </Container>

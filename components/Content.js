@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import PropTypes from 'prop-types';
 
 import Volume from './Volume';
 import HeartRate from './HeartRate';
@@ -8,31 +9,14 @@ import WorkoutForm from './WorkoutForm';
 import Auth from './Auth';
 
 
-export default function Form (props) {
-    const [minutes, setMinutes] = useState(0);
-    const [date, setDate] = useState(0);
-    const [heartRate, setHeartRate] = useState(0)
-    const [volume, setVolume] = useState(0);
-
+export default function Content (props) {
     const data = props.data;
 
-    useEffect (() => {
-        setVolume(minutes*heartRate)
-    }, [minutes, heartRate]);
-  
     return (
         props.token ? 
         <div id="landing-page">
             <WorkoutForm 
                 setData={props.setData}
-                date={date}
-                setDate={setDate}
-                minutes={minutes}
-                setMinutes={setMinutes}
-                volume={volume}
-                setVolume={setVolume}
-                heartRate={heartRate}
-                setHeartRate={setHeartRate}
                 user={props.user}
             />
             
@@ -67,4 +51,12 @@ export default function Form (props) {
             />
         </div> 
     )
-}
+};
+
+Content.propTypes = {
+    data: PropTypes.array,
+    user: PropTypes.object,
+    handleAuth: PropTypes.func,
+    token: PropTypes.string,
+    setData: PropTypes.func
+};

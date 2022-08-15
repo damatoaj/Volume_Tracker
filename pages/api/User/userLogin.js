@@ -2,23 +2,18 @@ import { createUserToken } from '../../../middleware/auth'
 
 const db = require('../../../db/models')
 
-
 export default async function userLogin(req, res) {
-    // console.log('logging in please @@@@@@@@@@@@@@@@@@@@@@@@@')
     const user = await db.user.findOne({
         where: {
             email: req.body.email
         }
-    })
+    });
 
-    const token = await user.update({
-        token: createUserToken(req, user),
-        user:user
-    })
+    if (!user) return new Error('User does not exist');
 
-    const data = await user.getWorkouts()
+    const token = createUserToken(req, user);
 
-    console.log(user)
-    console.log(data)
-    res.json({user:user, data:data})
-}
+    const data = await user.getWorkouts();
+
+    res.json({user, data, token});
+};

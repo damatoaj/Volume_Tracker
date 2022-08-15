@@ -1,43 +1,43 @@
-import {useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-
-function simulateNetworkRequest() {
-    return new Promise((resolve) => setTimeout(resolve, 1000));
-};
+import PropTypes from 'prop-types';
 
 export default function Signup(props) {
-    const user = props.user;
-    const password= props.password;
-    const [fname, setFname] = useState('');
-    const [lname, setLname] = useState('');
-    const [email, setEmail] = useState('');
-    const [isLoading, setLoading] = useState(false);
+    const [form, setForm] = useState({
+        fname: '',
+        lname: '',
+        email: '',
+        password: ''
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    //TODO add email/password verification
-    const [redirect, setRedirect] = useState(false);
-
-    useEffect(() => {
-        if (isLoading) {
-            simulateNetworkRequest().then(() => {
-                setLoading(false);
-            });
-        }
-    }, [isLoading])
+    const handleChange = (e) => {
+        setForm((prev) => ({
+            ...prev,
+            [e.target.name] : e.target.value
+        }))
+    };
 
     const handleClick = (e) => {
-        e.preventDefault();
-        console.log('handle click works')
-        axios.post(`/api/User/userCreate`, {fname, lname, email, password})
+        e.prevventDefault();
+        setIsLoading(true);
+        setErrorMessage(null);
+        
+        axios.post(`/api/User/userCreate`, form)
         .then(response => {
-            setLoading(true);
+            setIsLoading(false);
+            setErrorMessage(null);
             setRedirect(true);
-            props.setToken(localStorage.getItem('jwtToken'))
-            props.handleAuth(response.data)
-            console.log(response)
-            if(redirect) return( <PrivateRoute />)
+            props.handleAuth(response.data.user, response.data.token)
         })
+        .catch(error => {
+            console.error(error.message);
+            setErrorMessage(error.message);
+            setIsLoading(false)
+        });
     }
 
 
@@ -55,7 +55,7 @@ export default function Signup(props) {
                         type='text' 
                         id='fname' 
                         name='fname'
-                        onChange={e=> setFname(e.target.value)} 
+                        onChange={handleChange} 
                     />
                 </Form.Group>
                 <Form.Group id="signup-lname">
@@ -64,7 +64,7 @@ export default function Signup(props) {
                         type='text' 
                         id='lname' 
                         name='lname'
-                        onChange={e => setLname(e.target.value)} 
+                        onChange={handleChange} 
                     />
                 </Form.Group>
                 <Form.Group id="signup-email">
@@ -73,7 +73,7 @@ export default function Signup(props) {
                         type='email' 
                         id='email' 
                         name='email'
-                        onChange={e=> setEmail(e.target.value)}
+                        onChange={handleChange}
                     />
                 </Form.Group>
                 <Form.Group id="signup-password">
@@ -82,13 +82,13 @@ export default function Signup(props) {
                         type='password' 
                         id='password' 
                         name='password'
-                        onChange={e=> props.setPassword(e.target.value)}
+                        onChange={handleChange}
                     />
                 </Form.Group>
                 <Button 
                     as="input"
                     disabled={isLoading} 
-                    onClick={!isLoading ? handleClick: null }
+                    onClick={handleClick}
                     type='submit' 
                     value="Submit"
                     variant="primary" 
@@ -98,4 +98,8 @@ export default function Signup(props) {
             </fieldset>
         </Form>
     )
-}
+};
+
+Signup.propTypes = {
+    handleAuth: PropTypes.func.isRequired
+};

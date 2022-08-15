@@ -2,8 +2,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import Container from 'react-bootstrap/Container'
 
 export default function HeartRate(props) {
-    const data = props.data
-    return (
+    const data = props.data.map(datum => {
+        return {...datum, date: datum.date.substring(0,10)}
+    });    return (
         <Container fluid id="heartRate-container">
             <h1>Volume Compared to Heart Rate</h1>
             <ResponsiveContainer height="100%" width="100%">

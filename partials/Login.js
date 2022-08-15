@@ -1,47 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card'
-// import setAuthToken from '../../utils/setAuthToken';
 import axios from 'axios';
-// import { redirect } from 'next/dist/next-server/server/api-utils';
+import PropTypes from 'prop-types';
 
-function simulateNetworkRequest() {
-    return new Promise((resolve) => setTimeout(resolve, 1000));
-};
 
 export default function Login (props) {
-    const password = props.password;
-    const user = props.user;
-    const [email, setEmail] = useState('');
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    });
     const [redirect, setRedirect] = useState(false);
     const [isLoading, setLoading] = useState(false);
-    console.log(email)
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    useEffect(() => {
-        if (isLoading) {
-            simulateNetworkRequest().then(() => {
-                setLoading(false);
-            });
-        }
-    }, [isLoading])
+    const handleChange = (e) => {
+        setForm(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    };
 
     const handleClick = e => {
         e.preventDefault();
-        console.log("this is a login attempt")
-        console.log(email)
-        axios.post(`/api/User/userLogin`, {email, password})
+        setLoading(true);
+        setErrorMessage(null);
+
+        axios.post(`/api/User/userLogin`, form)
         .then(response => {
             setRedirect(true);
-            props.setToken(localStorage.getItem('jwtToken'));
-            props.handleAuth(response.data.user)
-            props.setData(response.data.data)
-            setLoading(true);
-            console.log(response)
-            console.log('login click working')
-            if (redirect) return <PrivateRoute />
+
+
+            props.handleAuth(response.data.user, response.data.token, response.data.data)
+
+            setLoading(false);
+            setErrorMessage(null);
+            if(redirect) return( <PrivateRoute />)
+
         }).catch(err => {
-            console.log(err, 'KILL ME PLEASE')
+            console.error(err, 'KILL ME PLEASE')
+            setLoading(false);
+            setErrorMessage(err.message);
         })
     }
 
@@ -59,7 +58,7 @@ export default function Login (props) {
                         id='email' 
                         name='email'
                         autoComplete="email"
-                        onChange={e=> setEmail(e.target.value)}
+                        onChange={handleChange}
                         required
                     />
                 </Form.Group>
@@ -70,14 +69,14 @@ export default function Login (props) {
                         id='password' 
                         name='password'
                         autoComplete='password'
-                        onChange={e=> props.setPassword(e.target.value)}
+                        onChange={handleChange}
                         required
                     />
                 </Form.Group>
                 <Button 
                     as="input"
                     disabled={isLoading} 
-                    onClick={!isLoading ? handleClick: null }
+                    onClick={handleClick}
                     type='submit' 
                     value="Submit"
                     variant="primary" 
@@ -87,4 +86,8 @@ export default function Login (props) {
             </fieldset>
         </Form>    
     )
-}
+};
+
+Login.propTypes = {
+    handleAuth: PropTypes.func.isRequired
+};

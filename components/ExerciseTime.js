@@ -1,8 +1,9 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import Container from 'react-bootstrap/Container';
 export default function ExerciseTime (props) {
-    const data = props.data;
-    return (
+    const data = props.data.map(datum => {
+        return {...datum, date: datum.date.substring(0,10)}
+    });    return (
         <Container fluid id="minutes-container">
             <h1>Minutes compared to Heart Rate</h1>
             <ResponsiveContainer height="100%" width="100%">

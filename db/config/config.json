@@ -2,7 +2,8 @@
   "development": {
     "database": "project4_development",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "sslmode": "disable"
   },
   "test": {
     "database": "project4_test",
@@ -11,6 +12,12 @@
   },
   "production": {
     "use_env_variable": "DATABASE_URL",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "native": true
+      }
+    }
   }
 }

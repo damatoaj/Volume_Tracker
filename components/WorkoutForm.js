@@ -1,48 +1,54 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Router from 'next/router';
 import axios from 'axios';
 import moment from 'moment';
-
-
-
-function simulateNetworkRequest() {
-    return new Promise((resolve) => setTimeout(resolve, 1000));
-};
+import PropTypes from 'prop-types';
 
 export default function WorkoutForm (props) {
-    const [isLoading, setLoading] = useState(false);
-    let date = moment(props.date).format('YYYY-MM-DD');
-    const minutes = props.minutes;
-    const heartRate = props.heartRate;
-    const volume = props.volume;
-    const user = props.user;
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [form, setForm] = useState({
+        minutes: 0,
+        heartRate: 0,
+        date: ''
+    });
 
-    useEffect(() => {
-        if (isLoading) {
-            simulateNetworkRequest().then(() => {
-                setLoading(false);
-            });
+    const volume = useMemo(() => {
+        return form.heartRate * form.minutes
+    }, [form.heartRate, form.minutes]);
+
+    
+    const handleChange = (e) => {
+        if (e.target.name === 'date') {
+            setForm(prev => ({
+                ...prev,
+                [e.target.name] : moment(e.target.value).format('YYYY-MM-DD')
+            }))
+        } else {
+            setForm(prev => ({
+                ...prev,
+                [e.target.name] : e.target.value
+            }))
         }
-    }, [isLoading])
+    };
     
     const handleClick = e => {
         e.preventDefault();
-        console.log('attemtp to make workout')
-        axios.post(`/api/User/[id]/workoutCreate`, {date, minutes, heartRate, volume, user})
-        .then(response => {
-            setLoading(true)
-            // console.log(response.data)
-            console.log("Submitting data")
-            props.setData(response.data)
-            // Router.post
-        }).catch(err=> {
-            console.log(err, 'cannot submit data')
-        })
-    };
+        setIsLoading(true)
+        setErrorMessage(null);
 
-    
+        axios.post(`/api/User/[id]/workoutCreate`, { ...form, volume, user: props.user})
+        .then(response => {
+            props.setData(response.data);
+            setIsLoading(false);
+            setErrorMessage(null);
+        }).catch(err=> {
+            console.error(err);
+            setIsLoading(false);
+            setErrorMessage(err.message)
+        });
+    };
 
     return(
 
@@ -58,7 +64,7 @@ export default function WorkoutForm (props) {
                             type='date' 
                             id='date' 
                             name='date'
-                            onChange={e => props.setDate(Date.parse(e.target.value))}
+                            onChange={handleChange}
                         />
                     </Form.Group>
                     <Form.Group id="workout-minutes">
@@ -68,7 +74,7 @@ export default function WorkoutForm (props) {
                             type='number' 
                             id='minutes' 
                             name='minutes'
-                            onChange={e => props.setMinutes(e.target.value)}
+                            onChange={handleChange}
                         />
                     </Form.Group>
                     <Form.Group id="workout-heartRate">
@@ -78,7 +84,7 @@ export default function WorkoutForm (props) {
                             type='number' 
                             id='heartRate' 
                             name='heartRate'
-                            onChange={e => props.setHeartRate(e.target.value)}
+                            onChange={handleChange}
                         />
                     </Form.Group>
                     <Form.Group id="workout-volume">
@@ -88,13 +94,13 @@ export default function WorkoutForm (props) {
                             type='number' 
                             id='volume' 
                             name='volume'
-                            value={props.volume}
+                            value={volume}
                         />
                     </Form.Group>
                     <Button 
                         as="input"
                         disabled={isLoading} 
-                        onClick={!isLoading ? handleClick: null }
+                        onClick={handleClick}
                         type='submit' 
                         value="Submit"
                         variant="primary" 
@@ -103,7 +109,12 @@ export default function WorkoutForm (props) {
                         block
                     />
                 </fieldset>
+                {errorMessage && <p>{errorMessage}</p>}
             </Form>
-
     )
 }
+
+WorkoutForm.propTypes = {
+    user: PropTypes.obj,
+    setData: PropTypes.func
+};
