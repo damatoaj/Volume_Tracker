@@ -3,14 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
+import { useRouter } from 'next/router';
 
 export default function Login (props) {
+    const router = useRouter();
     const [form, setForm] = useState({
         email: '',
         password: ''
     });
-    const [redirect, setRedirect] = useState(false);
     const [isLoading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -28,17 +28,13 @@ export default function Login (props) {
 
         axios.post(`/api/User/userLogin`, form)
         .then(response => {
-            setRedirect(true);
-
-
             props.handleAuth(response.data.user, response.data.token, response.data.data)
 
             setLoading(false);
             setErrorMessage(null);
-            if(redirect) return( <PrivateRoute />)
-
+            router.push('/');
         }).catch(err => {
-            console.error(err, 'KILL ME PLEASE')
+            console.error(err);
             setLoading(false);
             setErrorMessage(err.message);
         })
@@ -82,7 +78,8 @@ export default function Login (props) {
                     variant="primary" 
                     size="lg" 
                     active
-                />               
+                />          
+                {errorMessage && <p>{errorMessage}</p>}     
             </fieldset>
         </Form>    
     )
