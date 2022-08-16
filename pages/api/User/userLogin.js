@@ -15,5 +15,5 @@ export default async function userLogin(req, res) {
 
     const data = await user.getWorkouts();
 
-    res.send({user, data, token});
+    res.status(200).json({user, data, token});
 };

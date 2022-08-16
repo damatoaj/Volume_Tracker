@@ -17,7 +17,7 @@ export default async function workoutCreate(req, res) {
     const data = await user.getWorkouts()
 
 
-    res.send(data)
+    res.status(201).json(data)
 }
 //how do you write line 6
 //what do you want to do line 13; add user one to many not join table

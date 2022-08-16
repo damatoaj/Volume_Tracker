@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
+import { useRouter } from 'next/router';
 export default function Signup(props) {
+    const router = useRouter();
     const [form, setForm] = useState({
         fname: '',
         lname: '',
@@ -14,6 +15,7 @@ export default function Signup(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
+    const [redirect, setRedirect] = useState(false);
     const handleChange = (e) => {
         setForm((prev) => ({
             ...prev,
@@ -31,7 +33,8 @@ export default function Signup(props) {
             setIsLoading(false);
             setErrorMessage(null);
             setRedirect(true);
-            props.handleAuth(response.data.user, response.data.token)
+            props.handleAuth(response.data.user, response.data.token);
+            router.push('/');
         })
         .catch(error => {
             console.error(error.message);
@@ -39,7 +42,6 @@ export default function Signup(props) {
             setIsLoading(false)
         });
     }
-
 
     return (
         <Form 
@@ -96,6 +98,7 @@ export default function Signup(props) {
                     active
                 />              
             </fieldset>
+            {errorMessage && <p>{errorMessage}</p>}
         </Form>
     )
 };

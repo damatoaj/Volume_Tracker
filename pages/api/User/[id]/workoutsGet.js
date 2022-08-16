@@ -3,5 +3,5 @@ const db = require('../../../../db/models')
 
 export default async function workoutsGet(req, res) {
     const workoutGet = await db.workout.findAll(req.body);  
-    res.send(workoutGet)
+    res.status(200).json(workoutGet)
 }
