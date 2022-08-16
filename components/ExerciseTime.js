@@ -3,7 +3,13 @@ import Container from 'react-bootstrap/Container';
 export default function ExerciseTime (props) {
     const data = props.data.map(datum => {
         return {...datum, date: datum.date.substring(0,10)}
-    });    return (
+    }).sort((a,b)=> {
+        if (a.date < b.date) return -1
+        if (a.date > b.date) return 1
+        if (a.date === b.date) return 0
+    });   
+    
+    return (
         <Container fluid id="minutes-container">
             <h1>Minutes compared to Heart Rate</h1>
             <ResponsiveContainer height="100%" width="100%">
