@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,6 @@ import HeartRate from './HeartRate';
 import ExerciseTime from './ExerciseTime';
 import WorkoutForm from './WorkoutForm';
 import Auth from './Auth';
-
 
 export default function Content (props) {
     const data = props.data;

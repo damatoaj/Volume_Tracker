@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 import About from '../components/About';
 import Content from '../components/Content';
+import axios from 'axios';
+
 
 export default function Home() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -21,6 +23,21 @@ export default function Home() {
     setToken('');
     setData([]);
   };
+
+
+  useEffect(()=> {
+    let isMounted = true;
+    if (currentUser && isMounted) {
+        axios.get(`/api/User/${currentUser.id}/workoutsGet/`)
+        .then(response => {
+          setData(response.data)
+        }).catch(err => {
+          console.error(err)
+        })
+    }
+
+    return isMounted = false;
+}, [currentUser])
 
   return (
     <div id='container'>

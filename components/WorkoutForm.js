@@ -50,9 +50,11 @@ export default function WorkoutForm (props) {
             return 
         };
 
-        axios.post(`/api/User/[id]/workoutCreate`, { ...form, volume, user: props.user})
+        axios.post(`/api/User/${props.user.id}/workoutCreate`, { ...form, volume, id: props.user.id})
         .then(response => {
-            props.setData(response.data);
+            props.setData(prev => {
+                return [ ...prev, response.data ]
+            });
             setIsLoading(false);
             setErrorMessage(null);
         }).catch(err=> {

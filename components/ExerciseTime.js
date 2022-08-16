@@ -1,13 +1,13 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import Container from 'react-bootstrap/Container';
 export default function ExerciseTime (props) {
-    const data = props.data.map(datum => {
+    const data = props.data.length > 0 ? props.data.map(datum => {
         return {...datum, date: datum.date.substring(0,10)}
     }).sort((a,b)=> {
         if (a.date < b.date) return -1
         if (a.date > b.date) return 1
         if (a.date === b.date) return 0
-    });   
+    }) : [];   
     
     return (
         <Container fluid id="minutes-container">

@@ -1,7 +1,8 @@
 const db = require('../../../../db/models')
 
-
 export default async function workoutsGet(req, res) {
-    const workoutGet = await db.workout.findAll(req.body);  
-    res.status(200).json(workoutGet)
-}
+    const workouts= await db.workout.findAll({
+        where: { userId : req.query.id }
+    });  
+    res.status(200).json(workouts);
+};

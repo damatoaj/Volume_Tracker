@@ -3,8 +3,6 @@ import { createUserToken } from '../../../middleware/auth'
 const db = require('../../../db/models')
 
 export default async function userLogin(req, res) {
-    await db.workout.sync({ force: true })
-
     const user = await db.user.findOne({
         where: {
             email: req.body.email
@@ -15,7 +13,9 @@ export default async function userLogin(req, res) {
 
     const token = createUserToken(req, user);
 
-    const data = await user.getWorkouts();
+    const workouts = await db.workout.findAll({
+        where: { userId : user.id }
+    });
 
-    res.status(200).json({user, data, token});
+    res.status(200).json({user, workouts, token});
 };
