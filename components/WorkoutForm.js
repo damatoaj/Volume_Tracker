@@ -5,6 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
+const today = new Date();
 export default function WorkoutForm (props) {
     const [errorMessage, setErrorMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +38,17 @@ export default function WorkoutForm (props) {
         e.preventDefault();
         setIsLoading(true)
         setErrorMessage(null);
+
+        if (form.minutes < 1 || form.heartRate < 1) {
+            setErrorMessage('Minutes & Heart Rate must be above zero');
+            setIsLoading(false)
+            return;
+        };
+        if (moment(form.date).isAfter(today) || !form.date) {
+            setErrorMessage('Dates must be either today or in the past');
+            setIsLoading(false);
+            return 
+        };
 
         axios.post(`/api/User/[id]/workoutCreate`, { ...form, volume, user: props.user})
         .then(response => {
