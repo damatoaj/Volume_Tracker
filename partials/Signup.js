@@ -15,7 +15,6 @@ export default function Signup(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
-    const [redirect, setRedirect] = useState(false);
     const handleChange = (e) => {
         setForm((prev) => ({
             ...prev,
@@ -24,7 +23,7 @@ export default function Signup(props) {
     };
 
     const handleClick = (e) => {
-        e.prevventDefault();
+        e.preventDefault();
         setIsLoading(true);
         setErrorMessage(null);
         
@@ -32,7 +31,6 @@ export default function Signup(props) {
         .then(response => {
             setIsLoading(false);
             setErrorMessage(null);
-            setRedirect(true);
             props.handleAuth(response.data.user, response.data.token);
             router.push('/');
         })
