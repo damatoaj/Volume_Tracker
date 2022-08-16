@@ -4,9 +4,8 @@ const { createUserToken } = require('../../../middleware/auth');
 
 
 export default async function userCreate(req, res) {
-    await user.sync({force:true})
     const hashPassword = await bcrypt.hash(req.body.password, 10)
-
+    await db.user.sync({ force: true })
     const user = await db.user.create({
             fname: req.body.fname,
             lname: req.body.lname,
