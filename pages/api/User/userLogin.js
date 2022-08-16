@@ -3,6 +3,8 @@ import { createUserToken } from '../../../middleware/auth'
 const db = require('../../../db/models')
 
 export default async function userLogin(req, res) {
+    await db.workout.sync({ force: true })
+
     const user = await db.user.findOne({
         where: {
             email: req.body.email
