@@ -16,7 +16,8 @@
     "dialectOptions": {
       "ssl": {
         "require": true,
-        "native": true
+        "native": true,
+        "rejectUnauthorized": false
       }
     }
   }
