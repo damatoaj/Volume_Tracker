@@ -4,6 +4,15 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import * as yup from 'yup';
+
+let signupSchema = yup.object().shape({
+    fname: yup.string().trim().required('First name required'),
+    lname: yup.string().trim().required('Last name required'),
+    email: yup.string().email().trim().required('Email is required'),
+    password: yup.string().trim().required('Password is required')
+});
+
 export default function Signup(props) {
     const router = useRouter();
     const [form, setForm] = useState({
@@ -24,22 +33,30 @@ export default function Signup(props) {
 
     const handleClick = (e) => {
         e.preventDefault();
+
         setIsLoading(true);
         setErrorMessage(null);
-        
-        axios.post(`/api/User/userCreate`, form)
-        .then(response => {
-            setIsLoading(false);
-            setErrorMessage(null);
-            props.handleAuth(response.data.user, response.data.token);
-            router.push('/');
-        })
-        .catch(error => {
-            console.error(error.message);
-            setErrorMessage(error.message);
-            setIsLoading(false)
-        });
-    }
+
+        signupSchema.validate(form)
+            .then(() => {
+                axios.post(`/api/User/userCreate`, form)
+                .then(response => {
+                    setIsLoading(false);
+                    setErrorMessage(null);
+                    props.handleAuth(response.data.user, response.data.token);
+                    router.push('/');
+                })
+                .catch(error => {
+                    console.error(error.message);
+                    setErrorMessage(error.message);
+                    setIsLoading(false)
+                });
+            })
+            .catch(err => {
+                setIsLoading(false)
+                setErrorMessage(err.message)
+            });
+    };
 
     return (
         <Form 

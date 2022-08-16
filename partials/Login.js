@@ -4,6 +4,12 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import * as yup from 'yup';
+
+let loginSchema = yup.object().shape({
+    email: yup.string().email().required('Email is required'),
+    password: yup.string().required('Password is required')
+});
 
 export default function Login (props) {
     const router = useRouter();
@@ -11,7 +17,7 @@ export default function Login (props) {
         email: '',
         password: ''
     });
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
     const handleChange = (e) => {
@@ -23,22 +29,28 @@ export default function Login (props) {
 
     const handleClick = e => {
         e.preventDefault();
-        setLoading(true);
+        setIsLoading(true);
         setErrorMessage(null);
 
-        axios.post(`/api/User/userLogin`, form)
-        .then(response => {
-            props.handleAuth(response.data.user, response.data.token, response.data.data)
-
-            setLoading(false);
-            setErrorMessage(null);
-            router.push('/');
-        }).catch(err => {
-            console.error(err);
-            setLoading(false);
-            setErrorMessage(err.message);
+        loginSchema.validate(form)
+        .then(()=> {
+            axios.post(`/api/User/userLogin`, form)
+            .then(response => {
+                props.handleAuth(response.data.user, response.data.token, response.data.data)
+    
+                setIsLoading(false);
+                setErrorMessage(null);
+                router.push('/');
+            }).catch(err => {
+                setIsLoading(false);
+                setErrorMessage(err.message);
+            })
         })
-    }
+        .catch(err => {
+            setIsLoading(false);
+            setErrorMessage(err.message);
+        });
+    };
 
 
     return (
