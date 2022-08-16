@@ -17,5 +17,5 @@ export default async function userCreate(req, res) {
     
     const token = createUserToken(req, user);
 
-    res.json({user, token});
+    res.send({user, token});
 };
