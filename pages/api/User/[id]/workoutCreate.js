@@ -10,5 +10,7 @@ export default async function workoutCreate(req, res) {
         userId: req.body.id
     });
 
+    if(!workout) return res.status(500).send({error: 'Could not create workout'});
+
     res.status(201).json(workout);
 };

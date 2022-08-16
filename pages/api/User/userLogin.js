@@ -9,7 +9,7 @@ export default async function userLogin(req, res) {
         }
     });
 
-    if (!user) return new Error('User does not exist');
+    if (!user) return res.status(404).send({error: 'User does not exist'});
 
     const token = createUserToken(req, user);
 

@@ -4,5 +4,7 @@ export default async function userGetById(req, res) {
     const user = await db.user.findOne({
         where: {email: req.body.email}
     });
-    res.status(200).json(user)
+
+    if (!user) return res.status(404).send({error: 'Could not find user'});
+    res.status(200).json(user);
 };

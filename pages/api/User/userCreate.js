@@ -13,7 +13,7 @@ export default async function userCreate(req, res) {
             password: hashPassword
         });
 
-    if (!user) return new Error('Could not create user');
+    if (!user) return res.status(500).send({error: 'Could not create user'});
     
     const token = createUserToken(req, user);
 
